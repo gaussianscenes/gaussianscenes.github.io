@@ -1,1 +1,357 @@
-Under construction
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta content="Gaussian Scenes: Pose-Free Sparse-View Scene Reconstruction using Depth-Enhanced Diffusion Priors" name="description" />
+
+  <!-- Open Graph Metadata for Facebook, LinkedIn, etc. -->
+  <meta property="og:title" content="Gaussian Scenes: Pose-Free Sparse-View Scene Reconstruction using Depth-Enhanced Diffusion Priors">
+  <meta property="og:description"
+    content="A generative solution for generating 360 scenes from sparse unposed images.">
+  <meta property="og:image" content="https://gaussianscenes.github.io/images/dg.jpg">
+  <meta property="og:image:alt" content="Gaussian Scenes Method Overview">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gaussianscenes.github.io/">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gaussian Scenes: Pose-Free Sparse-View Scene Reconstruction using Depth-Enhanced Diffusion Priors">
+  <meta name="twitter:description"
+    content="A generative pose-free framework for generating 360 scenes from sparse unposed images.">
+  <meta name="twitter:image" content="https://gaussianscenes.github.io/images/dg.jpg">
+  <meta name="twitter:image:alt" content="Fillerbuster Model Architecture Overview">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <meta charset="UTF-8">
+
+  <title>Gaussian Scenes: Pose-Free Sparse-View Scene Reconstruction using Depth-Enhanced Diffusion Priors</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" type="image/png" href="images/jhu_logo.png"
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title method-class">
+                Gaussian Scenes: Pose-Free Sparse-View Scene Reconstruction using Depth-Enhanced Diffusion Priors
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://mvp18.github.io">Soumava Paul</a>,</span>
+              <span class="author-block">
+                <span class="author-block">
+                  <a href="https://toshi2k2.github.io/">Prakhar Kaushik</a>,</span>
+                <span class="author-block">
+                  <span class="author-block">
+                    <a href="https://www.cs.jhu.edu/~ayuille/">Alan Yuille</a></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Johns Hopkins University</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">arXiv 2025</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2411.15966" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="gscenes.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-file-pdf"></i>
+                    </span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/mvp18/gscenes"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-widescreen">
+      <div class="hero-body is-size-5 has-text-centered">
+        <div style="text-align: center;">
+          <strong>TLDR:</strong> <span class="method-class">Gaussian Scenes</span>
+          is a generative approach for pose-free reconstruction of 360&deg scenes from a limited number of uncalibrated 2D images. We train a RGBD diffusion
+          model capable of inpainting missing content and removing artifacts from novel view renders and depth maps of a 3DGS representation fitted to sparse inputs.
+          <br><br>
+          Our key contributions include a pixel-aligned confidence measure for better detection of empty regions and artifacts in novel views. We also propose context
+          and geometry conditioning through FiLM modulation layers as a lightweight alternative to cross-attention layers.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Gaussian Scenes Overview</h2>
+          <div class="content has-text-centered" style="margin-bottom: 10px;">
+            <p>
+              Our model comprises a variational autoencoder operating in a compressed latent space and a UNet denoiser for predicting noise in diffused latents. 
+              The UNet receives multimodal conditioning through four inputs: an RGBD image with artifacts, a confidence map identifying unreliable regions, 
+              CLIP features of source images providing semantic context, and camera encodings capturing geometric relationships between input views.
+            </p>
+            <div class="container" style="display: flex;">
+              <img src="images/dg.jpg" style="width: 100%; height: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Sample Scene Reconstruction</h2>
+          <div class="content has-text-centered">
+            <p>More visualizations coming soon!</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Scene Selection Buttons -->
+      <div class="columns is-centered" style="margin-bottom: 10px;">
+        <div class="column has-text-centered">
+          <button class="button flexible-button is-rounded is-dark is-small" id="treehill"
+            onclick="setScene('treehill')">Treehill</button>
+          <!-- Add more scenes here in the future -->
+        </div>
+      </div>
+  
+      <!-- Number of Views Buttons -->
+      <div class="columns is-centered" style="margin-bottom: 20px;">
+        <div class="column has-text-centered">
+          <button class="button flexible-button is-rounded is-dark is-small" id="views-9"
+            onclick="setViewCount('9')">9</button>
+          <!-- Add more view count buttons here in the future -->
+        </div>
+      </div>
+  
+      <div class="columns is-centered">
+        <!-- Left Video (MASt3R + 3DGS) -->
+        <div class="column is-half has-text-centered">
+          <h3 class="title is-4">MASt3R + 3DGS</h3>
+          <video id="video-left" width="100%" muted loop playsinline>
+            <source id="video-left-source" src="./data/treehill9_base.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+  
+        <!-- Right Video (Ours) -->
+        <div class="column is-half has-text-centered">
+          <h3 class="title is-4">Ours</h3>
+          <video id="video-right" width="100%" muted loop playsinline>
+            <source id="video-right-source" src="./data/treehill9_ours.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+  
+      <script>
+        let selectedScene = 'treehill';
+        let selectedViewCount = '9';
+  
+        function updateVideos() {
+          document.getElementById("video-left-source").src = `./data/${selectedScene}${selectedViewCount}_base.mp4`;
+          document.getElementById("video-right-source").src = `./data/${selectedScene}${selectedViewCount}_ours.mp4`;
+  
+          // Reload videos after source update
+          document.getElementById("video-left").load();
+          document.getElementById("video-right").load();
+        }
+  
+        function setScene(scene) {
+          selectedScene = scene;
+          updateVideos();
+        }
+  
+        function setViewCount(viewCount) {
+          selectedViewCount = viewCount;
+          updateVideos();
+        }
+  
+        document.addEventListener("DOMContentLoaded", function () {
+          const videoLeft = document.getElementById("video-left");
+          const videoRight = document.getElementById("video-right");
+  
+          function playBothVideos() {
+            videoLeft.play();
+            videoRight.play();
+          }
+  
+          function pauseBothVideos() {
+            videoLeft.pause();
+            videoRight.pause();
+          }
+  
+          // Play both videos when hovering over either one
+          videoLeft.addEventListener("mouseenter", playBothVideos);
+          videoRight.addEventListener("mouseenter", playBothVideos);
+  
+          // Pause both videos when leaving both
+          videoLeft.addEventListener("mouseleave", pauseBothVideos);
+          videoRight.addEventListener("mouseleave", pauseBothVideos);
+        });
+      </script>
+  
+    </div>
+  </section>
+  
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Qualitative Comparison with <a href="https://reconfusion.github.io/" target="_blank">ReconFusion</a> and <a href="https://cat3d.github.io/" target="_blank">CAT3D</a></h2>
+          <div class="content has-text-centered">
+            <p>We compare our approach with current state-of-the-art posed reconstruction techniques in ReconFusion and CAT3D. Unfortunately, both methods do not have open-source code available. Hence, 
+              we pick the relevant test views for 4 scenes showcased in their paper - Treehill, Flowers, Bicycle from MipNeRF360, and the plant scene from CO3Dv2 for a qualitative comparison. 
+              We use the same training views as open-sourced in their data splits.</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="table-container">
+        <table class="table is-bordered is-striped is-fullwidth has-text-centered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>MASt3R + 3DGS</th>
+              <th>ReconFusion</th>
+              <th>CAT3D</th>
+              <th>Ours</th>
+              <th>Ground Truth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Treehill (3)</strong></td>
+              <td><img src="images/recon_cat3d/_DSC8922_render.JPG" width="100%"></td>
+              <td><img src="images/recon_cat3d/treehill_recon.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/treehill_cat3d.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/_DSC8922_ours.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/_DSC8922_gt.JPG" width="100%"></td>
+            </tr>
+            <tr>
+              <td><strong>Flowers (3)</strong></td>
+              <td><img src="images/recon_cat3d/_DSC9208_render.JPG" width="100%"></td>
+              <td><img src="images/recon_cat3d/flowers_recon.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/flowers_cat3d.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/_DSC9208_ours.JPG" width="100%"></td>
+              <td><img src="images/recon_cat3d/_DSC9208_gt.JPG" width="100%"></td>
+            </tr>
+            <tr>
+              <td><strong>Plant (3)</strong></td>
+              <td><img src="images/recon_cat3d/frame000072_render.JPG" width="100%"></td>
+              <td><img src="images/recon_cat3d/plant_recon.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/plant_cat3d.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/frame000072_ours.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/frame000072_gt.JPG" width="100%"></td>
+            </tr>
+            <tr>
+              <td><strong>Bicycle (9)</strong></td>
+              <td><img src="images/recon_cat3d/_DSC8735_render.JPG" width="100%"></td>
+              <td><img src="images/recon_cat3d/bike_recon.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/bike_recon.png" style="opacity: 0;" width="100%"></td>
+              <td><img src="images/recon_cat3d/_DSC8735_ours.png" width="100%"></td>
+              <td><img src="images/recon_cat3d/_DSC8735_gt.JPG" width="100%"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="content has-text-centered">
+        <p>Despite being a pose-free pipeline, our method achieves competitive novel-view synthesis (NVS) quality with state-of-the-art sparse-view reconstruction techniques. No image is available for CAT3D in the last row, hence it is left blank.</p>
+      </div>
+  
+    </div>
+  </section>
+  
+  <section class="section" id="BibTeX">
+    <div class="container is-max-widescreen content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{paul2024gaussian,
+        title={Gaussian Scenes: Pose-Free Sparse-View Scene Reconstruction using Depth-Enhanced Diffusion Priors},
+        author={Paul, Soumava and Kaushik, Prakhar and Yuille, Alan},
+        journal={arXiv preprint arXiv:2411.15966},
+        year={2024}
+      }
+</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              We thank the <a href="https://nerfies.github.io/">Nerfies</a> authors for providing us
+              with this <a href="https://github.com/nerfies/nerfies.github.io">website template</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

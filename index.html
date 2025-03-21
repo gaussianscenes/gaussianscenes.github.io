@@ -168,7 +168,7 @@
       <!-- Scene Selection Buttons -->
       <div class="columns is-centered" style="margin-bottom: 10px;">
         <div class="column has-text-centered">
-          <button class="button flexible-button is-rounded is-dark is-small" id="treehill"
+          <button class="button flexible-button is-rounded is-dark is-small scene-button" id="treehill"
             onclick="setScene('treehill')">Treehill</button>
           <!-- Add more scenes here in the future -->
         </div>
@@ -177,9 +177,12 @@
       <!-- Number of Views Buttons -->
       <div class="columns is-centered" style="margin-bottom: 20px;">
         <div class="column has-text-centered">
-          <button class="button flexible-button is-rounded is-dark is-small" id="views-9"
+          <button class="button flexible-button is-rounded is-dark is-small view-button" id="views-3"
+            onclick="setViewCount('3')">3</button>
+          <button class="button flexible-button is-rounded is-light is-small view-button" id="views-6"
+            onclick="setViewCount('6')">6</button>
+          <button class="button flexible-button is-rounded is-light is-small view-button" id="views-9"
             onclick="setViewCount('9')">9</button>
-          <!-- Add more view count buttons here in the future -->
         </div>
       </div>
   
@@ -219,11 +222,32 @@
         function setScene(scene) {
           selectedScene = scene;
           updateVideos();
+          updateButtonStyles('scene', scene);
         }
   
         function setViewCount(viewCount) {
           selectedViewCount = viewCount;
           updateVideos();
+          updateButtonStyles('view', viewCount);
+        }
+  
+        function updateButtonStyles(type, selectedId) {
+          let buttons;
+          if (type === 'scene') {
+              buttons = document.querySelectorAll(".scene-button");
+          } else if (type === 'view') {
+              buttons = document.querySelectorAll(".view-button"); // Ensure correct selection
+          }
+
+          buttons.forEach(button => {
+              if (button.id.endsWith(selectedId)) { // Fix selection logic
+                  button.classList.remove("is-light");
+                  button.classList.add("is-dark");
+              } else {
+                  button.classList.remove("is-dark");
+                  button.classList.add("is-light");
+              }
+          });
         }
   
         document.addEventListener("DOMContentLoaded", function () {
@@ -251,7 +275,7 @@
       </script>
   
     </div>
-  </section>
+  </section>  
   
 
   <style>

@@ -151,6 +151,71 @@
         </div>
       </div>
     </div>
+
+    <div class="table-wrapper" style="max-width: 70%; margin: 0 auto;">
+      <div class="table-container">
+        <table class="table is-bordered is-striped is-fullwidth has-text-centered">
+          <thead>
+            <tr>
+              <th><strong>Method</strong></th>
+              <th>Pose-free</th>
+              <th>Open-source</th>
+              <th>Generative<br>Priors</th>
+              <th>Scene<br>Reconstruction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>FreeNeRF, DietNeRF,<br>RegNeRF, DN-Gaussian,<br>SparseGS, SparseNeRF</td>
+              <td>❌</td>
+              <td>✅</td>
+              <td>❌</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td>DiffusioNeRF, ZeroNVS</td>
+              <td>❌</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td>ReconFusion, CAT3D</td>
+              <td>❌</td>
+              <td>❌</td>
+              <td>✅</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td>Gaussian Object,<br>iFusion, UpFusion</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>InstantSplat, COGS</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>❌</td>
+              <td>✅</td>
+            </tr>
+            <tr>
+              <td><strong>Gaussian Scenes (Ours)</strong></td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="has-text-centered is-size-7">
+          <strong>Table:</strong> Comparison of sparse-view reconstruction methods. Methods are grouped based on their requirement for accurate camera poses, open-source availability, need for generative priors, and applicability to large-scale scene reconstruction.
+        </p>
+      </div>
+    </div>
+    
+    
   </section>  
 
 

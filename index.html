@@ -259,6 +259,12 @@
         <!-- Left Video (MASt3R + 3DGS) -->
         <div class="column is-half has-text-centered">
           <h3 class="title is-4">MASt3R + 3DGS</h3>
+
+          <div id="rgb-depth-toggle" class="buttons has-addons" style="position: absolute; top: 10px; left: 10px; z-index: 2;">
+            <button id="btn-rgb" class="button is-small is-dark">RGB</button>
+            <button id="btn-depth" class="button is-small is-light">Depth</button>
+          </div>
+          
           <video id="video-left" width="100%" muted loop playsinline>
             <source id="video-left-source" src="./data/treehill9_base.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -278,10 +284,12 @@
       <script>
         let selectedScene = 'treehill';
         let selectedViewCount = '9';
+        let showingDepth = false;
   
         function updateVideos() {
-          document.getElementById("video-left-source").src = `./data/${selectedScene}${selectedViewCount}_base.mp4`;
-          document.getElementById("video-right-source").src = `./data/${selectedScene}${selectedViewCount}_ours.mp4`;
+          const suffix = showingDepth ? '_depth' : '';
+          document.getElementById("video-left-source").src = `./data/${selectedScene}${selectedViewCount}_base${suffix}.mp4`;
+          document.getElementById("video-right-source").src = `./data/${selectedScene}${selectedViewCount}_ours${suffix}.mp4`;
   
           // Reload videos after source update
           document.getElementById("video-left").load();
@@ -343,6 +351,26 @@
 
           updateButtonStyles('scene', selectedScene);
           updateButtonStyles('view', selectedViewCount);
+
+          document.getElementById("btn-rgb").addEventListener("click", () => {
+            showingDepth = false;
+            updateVideos();
+
+            document.getElementById("btn-rgb").classList.add("is-dark");
+            document.getElementById("btn-rgb").classList.remove("is-light");
+            document.getElementById("btn-depth").classList.add("is-light");
+            document.getElementById("btn-depth").classList.remove("is-dark");
+          });
+
+          document.getElementById("btn-depth").addEventListener("click", () => {
+            showingDepth = true;
+            updateVideos();
+
+            document.getElementById("btn-depth").classList.add("is-dark");
+            document.getElementById("btn-depth").classList.remove("is-light");
+            document.getElementById("btn-rgb").classList.add("is-light");
+            document.getElementById("btn-rgb").classList.remove("is-dark");
+          });
         });
       </script>
   
